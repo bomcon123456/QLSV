@@ -1,14 +1,12 @@
 #pragma once
 #include <string>
 #include <ctype.h>
-#include <limits>
 #include "Date.h"
 
 class Student
 {
 private:
 	std::string s_ID;
-	std::string s_name;
 	std::string s_FirstName;
 	std::string s_LastName;
 	std::string s_class;
@@ -18,12 +16,13 @@ public:
 	void Import();
 
 	bool ProcessID();
-	bool ProcessName();
 	bool ProcessFirstName();
 	bool ProcessLastName();
 	bool ProcessClass();
 
 	bool CheckStringName(const std::string& p_name);
+	const std::string& GetFirstName() const { return s_FirstName; };
+	const std::string& GetID() const { return s_ID; };
 
 	void PrintStudentInfo() const;
 

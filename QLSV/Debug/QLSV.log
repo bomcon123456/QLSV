@@ -1,2 +1,6 @@
-﻿  Student.cpp
+﻿  QLSV.cpp
+  Student.cpp
+e:\workspace\school\qlsv\qlsv\student.cpp(111): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+  Generating Code...
   QLSV.vcxproj -> E:\Workspace\School\QLSV\Debug\QLSV.exe

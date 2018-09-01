@@ -4,7 +4,6 @@ bool myIsDigit(const std::string& teststr);
 
 void Student::Import()
 {
-	std::string name, classid, id;
 	while (!ProcessID());
 	while (!ProcessFirstName());
 	while (!ProcessLastName());
@@ -17,7 +16,7 @@ bool Student::ProcessID()
 {
 	std::string id;
 	std::cout << "Please enter Student's ID: ";
-	//FlushCin();
+	FlushCin();
 	std::cin >> id;
 	if (id.length() != 6 || id[0] != 'A')
 	{
@@ -77,8 +76,6 @@ bool Student::ProcessClass()
 	return true;
 }
 
-
-
 void Student::PrintStudentInfo() const
 {
 	std::cout << "Student name:" << s_LastName << " " << s_FirstName << std::endl;
@@ -110,13 +107,23 @@ bool myIsDigit(const std::string& teststr)
 
 bool Student::CheckStringName(const std::string& p_name)
 {
-	for (std::string::const_iterator it = p_name.begin(); it != p_name.end(); it++)
+	bool flag;
+	for (int i=0;i<p_name.size();i++)
 	{
-		if (isdigit(*it))
+		if (isdigit(p_name[i]))
 		{
 			std::cout << "Name should not have number." << std::endl;
 			return false;
 		}
+		if ((p_name[i] >= 65 && p_name[i] <= 90) || (p_name[i] >= 97 && p_name[i] <= 122) || p_name[i] == 32)
+		{
+			flag = true;
+		}
+		else
+		{
+			std::cout << "Name should not have weird character." << std::endl;
+			return false;
+		}
 	}
-	return true;
+	return flag;
 }
