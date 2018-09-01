@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include <algorithm>
+#include <fstream>
+#include <sstream>
 #include "Student.h"
 
 class QLSV
@@ -10,10 +13,15 @@ public:
 	QLSV() {};
 
 	void Import();
-	unsigned int size();
+	//void ImportFromFile(const std::string& filePath);
+	void PrintList();
+
+	void SortList();
 
 	bool Check_IDOverlap(const std::string& id);
 
+	// return shit.
 	Student back();
+	unsigned int size();
 
 };

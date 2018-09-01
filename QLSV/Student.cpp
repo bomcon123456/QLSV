@@ -18,22 +18,27 @@ bool Student::ProcessID()
 	std::cout << "Please enter Student's ID: ";
 	FlushCin();
 	std::cin >> id;
-	if (id.length() != 6 || id[0] != 'A')
+	if (id.length() != 6)
 	{
 		std::cout << "Wrong Student ID Pattern." << std::endl;
 		return false;
 	}
-	for (int i = 1; i <= 5; i++)
+
+	if( id[0] == 'A' || id[0] == 'a')
 	{
-		if (!isdigit(id[i]))
+		for (int i = 1; i <= 5; i++)
 		{
-			std::cout << "Wrong Student ID Pattern." << std::endl;
-			return false;
-		};
+			if (!isdigit(id[i]))
+			{
+				std::cout << "Wrong Student ID Pattern." << std::endl;
+				return false;
+			};
+		}
+		id[0]=toupper(id[0]);
+		s_ID = id;
+		return true;
 	}
-	 
-	s_ID = id;
-	return true;
+	return false;
 }
 
 bool Student::ProcessFirstName()
@@ -71,9 +76,19 @@ bool Student::ProcessClass()
 		std::cout << "Wrong Class Pattern" << std::endl;
 		return false;
 	}
-
+	for (int i = 0; i <= 1; i++)
+	{
+		p_class[i]=toupper(p_class[i]);
+	}
 	s_class = p_class;
 	return true;
+}
+
+bool Student::operator<(const Student& b)
+{
+	int x = atoi(s_ID.substr(1).c_str());
+	int y = atoi(b.GetID().substr(1).c_str());
+	return (x < y);
 }
 
 void Student::PrintStudentInfo() const
@@ -108,7 +123,7 @@ bool myIsDigit(const std::string& teststr)
 bool Student::CheckStringName(const std::string& p_name)
 {
 	bool flag;
-	for (int i=0;i<p_name.size();i++)
+	for (size_t i=0;i<p_name.size();i++)
 	{
 		if (isdigit(p_name[i]))
 		{

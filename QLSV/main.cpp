@@ -1,25 +1,32 @@
 #include <iostream>
+#include <stdlib.h>
+
 //#include <vector>
 //#include "Date.h"
 //#include "Student.h"
 #include "QLSV.h"
+#include "myLib.h"
 
 int main()
 {
 	QLSV test;
 	int choose;
-	std::cout << "IS332 Student Manager" << std::endl;
-	std::cout << "1. Student list" << std::endl;
-	std::cout << "2. Add student" << std::endl;
-	std::cout << "3. Delete student" << std::endl;
-	std::cout << "4. Find student" << std::endl;
-	std::cout << "Your choice: ";
-	std::cin >> choose;
+	char f;
+	do
+	{
+	InitialScreen(choose);
 	switch (choose)
 	{
+		case 1:
+		{
+			system("cls");
+			test.PrintList();
+			break;
+		}
 		case 2:
 		{
 			int n;
+			system("cls");
 			std::cout << "Welcome to add student management function" << std::endl;
 			std::cout << "How many student do you want to add: ";
 			std::cin >> n;
@@ -31,10 +38,17 @@ int main()
 			break;
 		}
 		default:
+		{
 			std::cout << "LEL" << std::endl;
 			break;
+		}
 	}
-
+	std::cout << "Do you want to go to main screen (y/n)? ";
+	FlushCin();
+	std::cin >> f;
+	if (f != 'y')
+		break;
+	} while (f == 'y');
 	//Student test;
 	//test.Import();
 	//test.PrintStudentInfo();

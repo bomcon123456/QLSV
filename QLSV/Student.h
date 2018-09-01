@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <ctype.h>
+#include <ctype.h>
 #include "Date.h"
 
 class Student
@@ -23,6 +24,8 @@ public:
 	bool CheckStringName(const std::string& p_name);
 	const std::string& GetFirstName() const { return s_FirstName; };
 	const std::string& GetID() const { return s_ID; };
+
+	bool operator<(const Student& b);
 
 	void PrintStudentInfo() const;
 
