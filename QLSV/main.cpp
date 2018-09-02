@@ -37,6 +37,24 @@ int main()
 			std::cout << "Currently Student List has " << test.size() << " student." << std::endl;
 			break;
 		}
+		case 5:
+		{
+			system("cls");
+			std::string filePath;
+			std::cout << "Please insert file name to export: ";
+			std::cin >> filePath;
+			test.ExportToFile(filePath);
+			break;
+		}
+		case 6:
+		{
+			system("cls");
+			std::string filePath;
+			std::cout << "Please insert file name to export: ";
+			std::cin >> filePath;
+			test.ImportFromFile(filePath);
+			break;
+		}
 		default:
 		{
 			std::cout << "LEL" << std::endl;

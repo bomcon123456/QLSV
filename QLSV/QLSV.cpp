@@ -14,20 +14,6 @@ void QLSV::Import()
 	}
 }
 
-//void QLSV::ImportFromFile(const std::string& filePath)
-//{
-//	std::stringstream ss;
-//	std::string line;
-//	std::ifstream file(filePath);
-//	while (getline(ss, line))
-//	{
-//		ss << line;
-//		std::cout << line << std::endl;
-//	}
-//
-//	file.close();
-//}
-
 void QLSV::PrintList()
 {
 	//for (auto it = StudentList.begin(); it != StudentList.end(); ++it)
@@ -79,6 +65,47 @@ bool QLSV::Check_IDOverlap(const std::string& id)
 	if(!flag)
 		std::cout << "This Student ID already in the list." << std::endl;
 	return flag;
+}
+
+void QLSV::ExportToFile(const std::string& filePath)
+{
+	std::ofstream myfile(filePath);
+	for (std::vector<Student>::iterator it = StudentList.begin(); it != StudentList.end(); ++it)
+	{
+		Student stu = *it;
+		myfile << stu.GetID() << "\n" << stu.GetLastName() << "\n" << stu.GetFirstName() 
+			<< "\n" << stu.GetDoB().GetDateString() << "\n" << stu.GetClass();
+		myfile << "\n";
+	}
+	myfile.close();
+}
+
+void QLSV::ImportFromFile(const std::string& filePath)
+{
+	std::stringstream ss;
+	std::string line;
+	std::ifstream file;
+	file.open(filePath);
+	if (file.is_open())
+	{
+		int i;
+		std::string id, ln, fn, dob, cl;
+		while (!((file>>line).eof()))
+		{
+			switch (i)
+			{
+			case 0:
+				
+			}
+			std::cout << line << std::endl;
+			if (i < 5)
+				i++;
+			else
+				i = 0;
+		}
+		file.close();
+	}
+	return;
 }
 
 Student QLSV::back()

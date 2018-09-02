@@ -27,6 +27,7 @@ public:
 	const std::string& GetClass() const { return s_class; };
 	const Date& GetDoB() const { return s_DOB; };
 	const std::string& GetID() const { return s_ID; };
+	const std::string& ExportStudentInfo() const { std::string result = GetID() + " " /*+ GetLastName() + " " + GetFirstName() + " " + GetDoB().GetDateString() + " " + GetClass()*/; return result; }
 
 	bool operator<(const Student& b);
 

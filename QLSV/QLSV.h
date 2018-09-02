@@ -14,12 +14,13 @@ public:
 	QLSV() {};
 
 	void Import();
-	//void ImportFromFile(const std::string& filePath);
 	void PrintList();
 
 	void SortList();
-
 	bool Check_IDOverlap(const std::string& id);
+
+	void ImportFromFile(const std::string& filePath);
+	void ExportToFile(const std::string& filePath);
 
 	// return shit.
 	Student back();
