@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include "Student.h"
+#include "vendor/VariadicTable.h"
 
 class QLSV
 {

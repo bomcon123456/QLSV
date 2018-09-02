@@ -61,6 +61,6 @@ bool Date::ProcessString(const std::string& datestr)
 
 void Date::PrintDate() const
 {
-	std::cout << datestring << std::endl;
+	std::cout << datestring;
 }
 

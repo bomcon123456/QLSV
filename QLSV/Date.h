@@ -12,5 +12,7 @@ public:
 	Date(int d, int m, int y) : day(d), month(m), year(y) {};
 	bool Import();
 	bool ProcessString(const std::string& datestr);
+
 	void PrintDate() const;
+	std::string GetDateString() const { return datestring; }
 };

@@ -41,5 +41,8 @@
     <ClInclude Include="myLib.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\VariadicTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

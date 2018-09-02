@@ -23,6 +23,9 @@ public:
 
 	bool CheckStringName(const std::string& p_name);
 	const std::string& GetFirstName() const { return s_FirstName; };
+	const std::string& GetLastName() const { return s_LastName; };
+	const std::string& GetClass() const { return s_class; };
+	const Date& GetDoB() const { return s_DOB; };
 	const std::string& GetID() const { return s_ID; };
 
 	bool operator<(const Student& b);

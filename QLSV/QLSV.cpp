@@ -30,11 +30,29 @@ void QLSV::Import()
 
 void QLSV::PrintList()
 {
+	//for (auto it = StudentList.begin(); it != StudentList.end(); ++it)
+	//{
+	//	(&(*it))->PrintStudentInfo();
+	//}
+	//return;
+	//MSV----Last name----First Name ----Birthday-----Class----
+	VariadicTable<int, std::string, std::string, std::string, std::string, std::string> vt({ "Index", "ID", "Last name", "First name", "DoB", "Class" });
 	for (auto it = StudentList.begin(); it != StudentList.end(); ++it)
 	{
-		(&(*it))->PrintStudentInfo();
+		Student stu = *it;
+		int index;
+		std::string id, ln, fn, dob, cl;
+		id = stu.GetID();
+		ln = stu.GetLastName();
+		fn = stu.GetFirstName();
+		dob = stu.GetDoB().GetDateString();
+		cl = stu.GetClass();
+		//	vt.addRow({ stu.GetID(), stu.GetLastName(), stu.GetFirstName(), stu.GetDoB(), stu.GetClass() });
+		vt.addRow({ index, id, ln, fn, dob, cl });
+		index++;
 	}
-	return;
+
+	vt.print(std::cout);
 }
 
 void QLSV::SortList()
