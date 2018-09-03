@@ -14,7 +14,12 @@ public:
 	QLSV() {};
 
 	void Import();
+	void Check_ImportNewStudentAndSort(Student &test, bool bPrint);
+	void Check_NewStudentAndSort(Student &test, bool bPrint);
 	void PrintList();
+
+	Student GetStudent(int index);
+	bool DeleteStudent(int index);
 
 	void SortList();
 	bool Check_IDNotOverlap(const std::string& id);

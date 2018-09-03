@@ -5,14 +5,8 @@ bool myComparision(Student a, Student b) { return (a < b); }
 void QLSV::Import()
 {
 	Student test;
-	test.InputID();
-	if (Check_IDNotOverlap(test.GetID()))
-	{
-		test.Import();
-		StudentList.push_back(test);
-		std::cout << "Sucessfully imported " << StudentList.back().GetFirstName() << std::endl;
-		SortList();
-	}
+	while(!test.InputID());
+	Check_ImportNewStudentAndSort(test,true);
 	//test.Import();
 	//if (Check_IDNotOverlap(test.GetID()))
 	//{
@@ -20,6 +14,29 @@ void QLSV::Import()
 	//	std::cout << "Sucessfully imported " << StudentList.back().GetFirstName() << std::endl;
 	//	SortList();
 	//}
+}
+
+void QLSV::Check_ImportNewStudentAndSort(Student &test,bool bPrint)
+{
+	if (Check_IDNotOverlap(test.GetID()))
+	{
+		test.Import();
+		StudentList.push_back(test);
+		if(bPrint)
+			std::cout << "Sucessfully imported " << StudentList.back().GetFirstName() << std::endl;
+		SortList();
+	}
+}
+
+void QLSV::Check_NewStudentAndSort(Student &test, bool bPrint)
+{
+	if (Check_IDNotOverlap(test.GetID()))
+	{
+		StudentList.push_back(test);
+		if(bPrint)
+			std::cout << "Sucessfully imported " << StudentList.back().GetFirstName() << std::endl;
+		SortList();
+	}
 }
 
 void QLSV::PrintList()
@@ -30,7 +47,7 @@ void QLSV::PrintList()
 	//}
 	//return;
 	//MSV----Last name----First Name ----Birthday-----Class----
-	int index=0;
+	int index = 1;
 	VariadicTable<int, std::string, std::string, std::string, std::string, std::string> vt({ "Index", "ID", "Last name", "First name", "DoB", "Class" });
 	for (auto it = StudentList.begin(); it != StudentList.end(); ++it)
 	{
@@ -47,6 +64,31 @@ void QLSV::PrintList()
 	}
 
 	vt.print(std::cout);
+}
+
+Student QLSV::GetStudent(int index)
+{
+	if (index <= size())
+	{
+		return StudentList[index-1];
+	}
+	std::cout << "Invalid position to fix." << std::endl;
+	return Student();
+	
+}
+
+bool QLSV::DeleteStudent(int index)
+{
+	if (index <= size())
+	{
+		StudentList.erase(StudentList.begin() + (index - 1));
+		return true;
+	}
+	else
+	{
+		std::cout << "Invalid position to delete." << std::endl;
+		return false;
+	}
 }
 
 void QLSV::SortList()
@@ -98,19 +140,49 @@ void QLSV::ImportFromFile(const std::string& filePath)
 	{
 		int i=0;
 		std::string id, ln, fn, dob, cl;
-		while (!((file>>line).eof()))
+		while (((getline(file,line))))
 		{
 			switch (i)
 			{
 			case 0:
-				std::cout << line << std::endl;
-
+			{
+				std::cout << "ID: " << line << std::endl;
+				id = line;
 				break;
 			}
-			if (i < 5)
-				i++;
+			case 1:
+			{
+				std::cout << "LN: " << line << std::endl;
+				ln = line;
+				break;
+			}
+			case 2:
+			{
+				std::cout << "FN: " << line << std::endl;
+				fn = line;
+				break;
+			}
+			case 3:
+			{
+				std::cout << "DoB: " << line << std::endl;
+				dob = line;
+				break;
+			}
+			case 4:
+			{
+				std::cout << "CL: " << line << std::endl;
+				cl = line;
+				break;
+			}
+			}
+			if (i < 4)
+				++i;
 			else
+			{
+				Student importStu(id, ln, fn, dob, cl);
+				Check_NewStudentAndSort(importStu, true);
 				i = 0;
+			}
 		}
 		file.close();
 	}

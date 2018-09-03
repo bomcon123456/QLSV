@@ -13,7 +13,8 @@ private:
 	std::string s_class;
 	Date s_DOB;
 public:
-	Student(): s_ID("A0000"), s_FirstName("An"), s_LastName("Nguyen Van"), s_class("IS332") {};
+	Student(): s_ID("A0000"), s_FirstName("An"), s_LastName("Nguyen Van"), s_class("IS332") {}
+	Student(const std::string& p_id, const std::string& p_ln, const std::string& p_fn, const std::string& p_dob, const std::string& p_cl);
 	void Import();
 
 	bool ProcessID(const std::string& p_id);
@@ -25,6 +26,7 @@ public:
 	bool InputFN();
 	bool InputLN();
 	bool InputCL();
+	bool InputDOB();
 
 
 	bool CheckStringName(const std::string& p_name);

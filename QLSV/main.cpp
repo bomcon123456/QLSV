@@ -37,7 +37,100 @@ int main()
 			std::cout << "Currently Student List has " << test.size() << " student." << std::endl;
 			break;
 		}
-		case 5:
+		case 3:
+		{
+			system("cls");
+			test.PrintList();
+			int n=0;
+			if (test.size() == 0)
+			{
+				std::cout << "There isn't any student to fix yet." << std::endl;
+				break;
+			}
+			std::cout << "Which student you want to delete? : ";
+			std::cin >> n;
+			if(test.DeleteStudent(n))
+			{
+				std::cout << "Deletion Complete. List currently has " << test.size() << " students." << std::endl;
+				test.PrintList();
+			}
+			break;
+		}
+		case 4:
+		{
+			system("cls");
+			test.PrintList();
+			int n = 0;
+			if (test.size() == 0)
+			{
+				std::cout << "There isn't any student to fix yet." << std::endl;
+				break;
+			}
+			std::cout << "Which student you want to fix information? : ";
+			std::cin >> n;
+			Student fixStu = test.GetStudent(n);
+			test.DeleteStudent(n);
+			std::cout << "1. ID" << std::endl;
+			std::cout << "2. Last name" << std::endl;
+			std::cout << "3. First name" << std::endl;
+			std::cout << "4. Date of Birth" << std::endl;
+			std::cout << "5. Class" << std::endl;
+			std::cout << "6. All" << std::endl;
+			std::cout << "Which information you want to fix? : ";
+			std::cin >> n;
+			switch (n)
+			{
+			case 1:
+			{
+				std::string tempID = fixStu.GetID();
+				if (fixStu.InputID())
+				{
+					if (!test.Check_IDNotOverlap(fixStu.GetID()))
+					{
+						std::cout << "This ID's already in the list, can't add." << std::endl;
+						fixStu.ProcessID(tempID);
+					}
+					test.Check_NewStudentAndSort(fixStu, false);
+				}
+
+				std::cout << "Result: " << std::endl;
+				test.PrintList();
+				break;
+			}
+			case 2:
+			{
+				fixStu.InputLN();
+				break;
+			}
+			case 3:
+			{
+				fixStu.InputFN();
+				break;
+			}	
+			case 4:
+			{
+				fixStu.InputDOB();
+				break;
+			}
+			case 5:
+			{
+				fixStu.InputCL();
+				break;
+			}
+			case 6:
+			{
+				fixStu.Import();
+				break;
+			}
+			default:
+			{
+				std::cout << "You should not be here." << std::endl;
+				break;
+			}
+			}
+			break;
+		}
+		case 6:
 		{
 			system("cls");
 			std::string filePath;
@@ -46,7 +139,7 @@ int main()
 			test.ExportToFile(filePath);
 			break;
 		}
-		case 6:
+		case 7:
 		{
 			system("cls");
 			std::string filePath;

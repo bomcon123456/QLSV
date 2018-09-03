@@ -2,12 +2,20 @@
 
 bool myIsDigit(const std::string& teststr);
 
+Student::Student(const std::string& p_id, const std::string& p_ln, const std::string& p_fn, const std::string& p_dob, const std::string& p_cl)
+{
+	if (!ProcessID(p_id) || !ProcessLastName(p_ln) || !ProcessFirstName(p_fn) || !ProcessClass(p_cl) || !s_DOB.ProcessString(p_dob))
+	{
+		std::cout << "The student with ID: " << p_id << " and name: " << p_fn <<" either has incorrect pattern or duplicated, please check again." << std::endl;
+	}
+}
+
 void Student::Import()
 {
 //	while (!ProcessID());
 	while (!InputFN());
 	while (!InputLN());
-	while (!s_DOB.Import());
+	while (!InputDOB());
 	while (!InputCL());
 	return;
 }
@@ -104,6 +112,11 @@ bool Student::InputCL()
 	FlushCin();
 	std::cin >> p_class;
 	return ProcessClass(p_class);
+}
+
+bool Student::InputDOB()
+{
+	return s_DOB.Import();
 }
 
 bool Student::operator<(const Student& b)
