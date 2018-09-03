@@ -1,0 +1,67 @@
+﻿  QLSV.cpp
+e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(83): warning C4267: '-=': conversion from 'size_t' to 'unsigned int', possible loss of data
+  e:\workspace\school\qlsv\qlsv\qlsv.cpp(49): note: see reference to function template instantiation 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::print<std::ostream>(StreamType &)' being compiled
+          with
+          [
+              StreamType=std::ostream
+          ]
+  e:\workspace\school\qlsv\qlsv\qlsv.cpp(49): note: see reference to function template instantiation 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::print<std::ostream>(StreamType &)' being compiled
+          with
+          [
+              StreamType=std::ostream
+          ]
+e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(339): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(339): note: while compiling class template member function 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::size_columns(void)'
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(84): note: see reference to function template instantiation 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::size_columns(void)' being compiled
+  e:\workspace\school\qlsv\qlsv\qlsv.cpp(34): note: see reference to class template instantiation 'VariadicTable<int,std::string,std::string,std::string,std::string,std::string>' being compiled
+e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(314): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(331): note: see reference to function template instantiation 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::size_each<0,std::tuple<int,std::string,std::string,std::string,std::string,std::string>&,void>(TupleType,std::vector<unsigned int,std::allocator<_Ty>> &,std::integral_constant<size_t,0>)' being compiled
+          with
+          [
+              TupleType=std::tuple<int,std::string,std::string,std::string,std::string,std::string> &,
+              _Ty=unsigned int
+          ]
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(332): note: see reference to function template instantiation 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::size_each<0,std::tuple<int,std::string,std::string,std::string,std::string,std::string>&,void>(TupleType,std::vector<unsigned int,std::allocator<_Ty>> &,std::integral_constant<size_t,0>)' being compiled
+          with
+          [
+              TupleType=std::tuple<int,std::string,std::string,std::string,std::string,std::string> &,
+              _Ty=unsigned int
+          ]
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(339): note: see reference to function template instantiation 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::size_each<std::tuple<int,std::string,std::string,std::string,std::string,std::string>&>(TupleType,std::vector<unsigned int,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              TupleType=std::tuple<int,std::string,std::string,std::string,std::string,std::string> &,
+              _Ty=unsigned int
+          ]
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(352): note: see reference to function template instantiation 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::size_each<std::tuple<int,std::string,std::string,std::string,std::string,std::string>&>(TupleType,std::vector<unsigned int,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              TupleType=std::tuple<int,std::string,std::string,std::string,std::string,std::string> &,
+              _Ty=unsigned int
+          ]
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(339): note: while compiling class template member function 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::size_columns(void)'
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(84): note: see reference to function template instantiation 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::size_columns(void)' being compiled
+e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(280): warning C4244: 'return': conversion from 'double' to 'size_t', possible loss of data
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(314): note: see reference to function template instantiation 'size_t VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::sizeOfData<int>(const T &,void *)' being compiled
+          with
+          [
+              T=int
+          ]
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(315): note: see reference to function template instantiation 'size_t VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::sizeOfData<int>(const T &,void *)' being compiled
+          with
+          [
+              T=int
+          ]
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(331): note: see reference to function template instantiation 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::size_each<0,std::tuple<int,std::string,std::string,std::string,std::string,std::string>&,void>(TupleType,std::vector<unsigned int,std::allocator<_Ty>> &,std::integral_constant<size_t,0>)' being compiled
+          with
+          [
+              TupleType=std::tuple<int,std::string,std::string,std::string,std::string,std::string> &,
+              _Ty=unsigned int
+          ]
+  e:\workspace\school\qlsv\qlsv\vendor\variadictable.h(332): note: see reference to function template instantiation 'void VariadicTable<int,std::string,std::string,std::string,std::string,std::string>::size_each<0,std::tuple<int,std::string,std::string,std::string,std::string,std::string>&,void>(TupleType,std::vector<unsigned int,std::allocator<_Ty>> &,std::integral_constant<size_t,0>)' being compiled
+          with
+          [
+              TupleType=std::tuple<int,std::string,std::string,std::string,std::string,std::string> &,
+              _Ty=unsigned int
+          ]
+  QLSV.vcxproj -> E:\Workspace\School\QLSV\x64\Debug\QLSV.exe

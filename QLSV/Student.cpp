@@ -4,20 +4,17 @@ bool myIsDigit(const std::string& teststr);
 
 void Student::Import()
 {
-	while (!ProcessID());
-	while (!ProcessFirstName());
-	while (!ProcessLastName());
+//	while (!ProcessID());
+	while (!InputFN());
+	while (!InputLN());
 	while (!s_DOB.Import());
-	while (!ProcessClass());
+	while (!InputCL());
 	return;
 }
 
-bool Student::ProcessID()
+bool Student::ProcessID(const std::string& p_id)
 {
-	std::string id;
-	std::cout << "Please enter Student's ID: ";
-	FlushCin();
-	std::cin >> id;
+	std::string id = p_id;
 	if (id.length() != 6)
 	{
 		std::cout << "Wrong Student ID Pattern." << std::endl;
@@ -41,47 +38,72 @@ bool Student::ProcessID()
 	return false;
 }
 
-bool Student::ProcessFirstName()
+bool Student::ProcessFirstName(const std::string& p_name)
 {
-	std::string p_name;
-	std::cout << "Please enter Student's First name: ";
-	FlushCin();
-	std::getline(std::cin, p_name);
 	if (!CheckStringName(p_name))
 		return false;
 	s_FirstName = p_name;
 	return true;
 }
 
-bool Student::ProcessLastName()
+bool Student::ProcessLastName(const std::string& p_name)
 {
-	std::string p_name;
-	std::cout << "Please enter Student's Last name: ";
-	FlushCin();
-	std::getline(std::cin, p_name);
 	if (!CheckStringName(p_name))
 		return false;
 	s_LastName = p_name;
 	return true;
 }
 
-bool Student::ProcessClass()
+bool Student::ProcessClass(const std::string& p_class)
 {
-	std::string p_class;
-	std::cout << "Please enter Student's class:";
-	FlushCin();
-	std::cin >> p_class;
-	if (p_class.length()!=4 || myIsDigit(p_class.substr(0,2)) || !myIsDigit(p_class.substr(2,2)))
+	std::string myClass = p_class;
+	if (myClass.length()!=4 || myIsDigit(myClass.substr(0,2)) || !myIsDigit(myClass.substr(2,2)))
 	{
 		std::cout << "Wrong Class Pattern" << std::endl;
 		return false;
 	}
 	for (int i = 0; i <= 1; i++)
 	{
-		p_class[i]=toupper(p_class[i]);
+		myClass[i]=toupper(myClass[i]);
 	}
-	s_class = p_class;
+	s_class = myClass;
 	return true;
+}
+
+bool Student::InputID()
+{
+	std::string id;
+	std::cout << "Please enter Student's ID: ";
+	FlushCin();
+	std::cin >> id;
+	return ProcessID(id);
+}
+
+bool Student::InputFN()
+{
+	std::string p_name;
+	std::cout << "Please enter Student's First name: ";
+	FlushCin();
+	std::getline(std::cin, p_name);
+	return ProcessFirstName(p_name);
+}
+
+bool Student::InputLN()
+{
+	std::string p_name;
+	std::cout << "Please enter Student's Last name: ";
+	FlushCin();
+	std::getline(std::cin, p_name);
+	return ProcessLastName(p_name);
+}
+
+bool Student::InputCL()
+{
+	std::string p_class;
+	std::cout << "Please enter Student's class:";
+	FlushCin();
+	std::cin >> p_class;
+	return ProcessClass(p_class);
 }
 
 bool Student::operator<(const Student& b)

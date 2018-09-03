@@ -5,13 +5,21 @@ bool myComparision(Student a, Student b) { return (a < b); }
 void QLSV::Import()
 {
 	Student test;
-	test.Import();
-	if (Check_IDOverlap(test.GetID()))
+	test.InputID();
+	if (Check_IDNotOverlap(test.GetID()))
 	{
+		test.Import();
 		StudentList.push_back(test);
 		std::cout << "Sucessfully imported " << StudentList.back().GetFirstName() << std::endl;
 		SortList();
 	}
+	//test.Import();
+	//if (Check_IDNotOverlap(test.GetID()))
+	//{
+	//	StudentList.push_back(test);
+	//	std::cout << "Sucessfully imported " << StudentList.back().GetFirstName() << std::endl;
+	//	SortList();
+	//}
 }
 
 void QLSV::PrintList()
@@ -22,11 +30,11 @@ void QLSV::PrintList()
 	//}
 	//return;
 	//MSV----Last name----First Name ----Birthday-----Class----
+	int index=0;
 	VariadicTable<int, std::string, std::string, std::string, std::string, std::string> vt({ "Index", "ID", "Last name", "First name", "DoB", "Class" });
 	for (auto it = StudentList.begin(); it != StudentList.end(); ++it)
 	{
 		Student stu = *it;
-		int index;
 		std::string id, ln, fn, dob, cl;
 		id = stu.GetID();
 		ln = stu.GetLastName();
@@ -46,12 +54,12 @@ void QLSV::SortList()
 	std::sort(StudentList.begin(), StudentList.end(), myComparision);
 }
 
-unsigned int QLSV::size()
+size_t QLSV::size()
 {
 	return StudentList.size();
 }
 
-bool QLSV::Check_IDOverlap(const std::string& id)
+bool QLSV::Check_IDNotOverlap(const std::string& id)
 {
 	bool flag=true;
 	for (std::vector<Student>::iterator it = StudentList.begin(); it != StudentList.end(); ++it)
@@ -88,16 +96,17 @@ void QLSV::ImportFromFile(const std::string& filePath)
 	file.open(filePath);
 	if (file.is_open())
 	{
-		int i;
+		int i=0;
 		std::string id, ln, fn, dob, cl;
 		while (!((file>>line).eof()))
 		{
 			switch (i)
 			{
 			case 0:
-				
+				std::cout << line << std::endl;
+
+				break;
 			}
-			std::cout << line << std::endl;
 			if (i < 5)
 				i++;
 			else

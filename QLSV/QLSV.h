@@ -17,13 +17,13 @@ public:
 	void PrintList();
 
 	void SortList();
-	bool Check_IDOverlap(const std::string& id);
+	bool Check_IDNotOverlap(const std::string& id);
 
 	void ImportFromFile(const std::string& filePath);
 	void ExportToFile(const std::string& filePath);
 
 	// return shit.
 	Student back();
-	unsigned int size();
+	size_t size();
 
 };

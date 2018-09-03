@@ -16,10 +16,16 @@ public:
 	Student(): s_ID("A0000"), s_FirstName("An"), s_LastName("Nguyen Van"), s_class("IS332") {};
 	void Import();
 
-	bool ProcessID();
-	bool ProcessFirstName();
-	bool ProcessLastName();
-	bool ProcessClass();
+	bool ProcessID(const std::string& p_id);
+	bool ProcessFirstName(const std::string& p_name);
+	bool ProcessLastName(const std::string& p_name);
+	bool ProcessClass(const std::string& p_class);
+
+	bool InputID();
+	bool InputFN();
+	bool InputLN();
+	bool InputCL();
+
 
 	bool CheckStringName(const std::string& p_name);
 	const std::string& GetFirstName() const { return s_FirstName; };
