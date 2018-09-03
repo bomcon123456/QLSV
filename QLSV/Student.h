@@ -13,7 +13,7 @@ private:
 	std::string s_class;
 	Date s_DOB;
 public:
-	Student(): s_ID("A0000"), s_FirstName("An"), s_LastName("Nguyen Van"), s_class("IS332") {}
+	Student(): s_ID("A00001"), s_FirstName("An"), s_LastName("Nguyen Van"), s_class("IS332") {}
 	Student(const std::string& p_id, const std::string& p_ln, const std::string& p_fn, const std::string& p_dob, const std::string& p_cl);
 	void Import();
 

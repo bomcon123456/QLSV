@@ -86,6 +86,10 @@ int main()
 				std::cout << "Which student you want to fix information? : ";
 				std::cin >> n;
 				Student fixStu = test.GetStudent(n);
+				if (fixStu.GetID() == "A00001")
+				{
+					break;
+				}
 				test.DeleteStudent(n);
 				std::cout << "1. ID" << " (Currently: "<<fixStu.GetID()<<")"<< std::endl;
 				std::cout << "2. Last name" << " (Currently: " << fixStu.GetLastName() << ")" << std::endl;
@@ -279,7 +283,7 @@ int main()
 			}
 			default:
 			{
-				std::cout << "Please input 1-9." << std::endl;
+				std::cout << "Please input 1-10." << std::endl;
 				break;
 			}
 			}

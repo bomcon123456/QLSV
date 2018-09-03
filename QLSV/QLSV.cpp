@@ -125,6 +125,7 @@ void QLSV::Find_IDFilter(const std::string& filter)
 		if (stu.GetID().find(filter) != std::string::npos)
 		{
 			stu.PrintStudentInfo();
+			std::cout << "-----------------" << std::endl;
 			counter++;
 		}
 	}
@@ -143,6 +144,7 @@ void QLSV::Find_FNFilter(const std::string& filter)
 		if (stu.GetFirstName().find(filter) != std::string::npos)
 		{
 			stu.PrintStudentInfo();
+			std::cout << "-----------------" << std::endl;
 			counter++;
 		}
 	}
@@ -161,6 +163,7 @@ void QLSV::Find_LNFilter(const std::string& filter)
 		if (stu.GetLastName().find(filter) != std::string::npos)
 		{
 			stu.PrintStudentInfo();
+			std::cout << "-----------------" << std::endl;
 			counter++;
 		}
 	}
@@ -179,6 +182,7 @@ void QLSV::Find_YearFilter(const int& filter)
 		if (stu.GetDoB().GetYear() == filter)
 		{
 			stu.PrintStudentInfo();
+			std::cout << "-----------------" << std::endl;
 			counter++;
 		}
 	}
@@ -197,6 +201,7 @@ void QLSV::Find_MonthFilter(const int& filter)
 		if (stu.GetDoB().GetMonth() == filter)
 		{
 			stu.PrintStudentInfo();
+			std::cout <<"-----------------"<< std::endl;
 			counter++;
 		}
 	}
