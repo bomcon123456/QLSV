@@ -245,7 +245,17 @@ int main()
 				std::cout << "Successfully exported to " << filePath << "." << std::endl;
 				break;
 			}
-			case 7:			// Import from File
+			case 7:			// Export to CSV
+			{
+				system("cls");
+				std::string filePath;
+				std::cout << "Please insert file name to export: ";
+				std::cin >> filePath;
+				test.ExportToCSV(filePath);
+				std::cout << "Successfully exported to " << filePath << "." << std::endl;
+				break;
+			}
+			case 8:			// Import from File
 			{
 				system("cls");
 				std::string filePath;
@@ -254,7 +264,7 @@ int main()
 				test.ImportFromTXTFile(filePath);
 				break;
 			}
-			case 8:
+			case 9:
 			{				
 				system("cls");
 				std::string filePath;
@@ -263,14 +273,20 @@ int main()
 				test.ImportFromCSV(filePath);
 				break;
 			}
+			case 10:
+			{
+				break;
+			}
 			default:
 			{
-				std::cout << "Please input 1-8." << std::endl;
+				std::cout << "Please input 1-9." << std::endl;
 				break;
 			}
 			}
 		}
 
+		if (choose == 10)
+			break;
 	FlushCin();
 	std::cout << "Do you want to go to main screen (y/n)? ";
 	if (!flag)	std::cin.ignore();
@@ -285,7 +301,8 @@ int main()
 	//test.Import();
 	//test.PrintStudentInfo();
 
-
+	if(choose == 10)
+		system("cls");
 	system("pause");
 	return 1;
 

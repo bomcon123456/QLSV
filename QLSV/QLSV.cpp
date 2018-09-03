@@ -219,6 +219,19 @@ void QLSV::ExportToFile(const std::string& filePath)
 	myfile.close();
 }
 
+void QLSV::ExportToCSV(const std::string& filePath)
+{
+	std::ofstream myfile(filePath);
+	for (std::vector<Student>::iterator it = StudentList.begin(); it != StudentList.end(); ++it)
+	{
+		Student stu = *it;
+		myfile << stu.GetID() << "," << stu.GetLastName() << "," << stu.GetFirstName()
+			<< "," << stu.GetDoB().GetDateString() << "," << stu.GetClass();
+		myfile << "\n";
+	}
+	myfile.close();
+}
+
 bool QLSV::ImportFromTXTFile(const std::string& filePath)
 {
 	std::string line;

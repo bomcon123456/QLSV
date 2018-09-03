@@ -32,6 +32,7 @@ public:
 	bool ImportFromTXTFile(const std::string& filePath);
 	bool ImportFromCSV(const std::string & filePath);
 	void ExportToFile(const std::string& filePath);
+	void ExportToCSV(const std::string& filePath);
 
 	// return shit.
 	Student back();
