@@ -2,11 +2,11 @@
 
 bool myComparision(Student a, Student b) { return (a < b); }
 
-void QLSV::Import()
+void QLSV::Import(bool bPrint)
 {
 	Student test;
 	while(!test.InputID());
-	Check_ImportNewStudentAndSort(test,true);
+	Check_ImportNewStudentAndSort(test, bPrint);
 	//test.Import();
 	//if (Check_IDNotOverlap(test.GetID()))
 	//{
@@ -68,7 +68,7 @@ void QLSV::PrintList()
 
 Student QLSV::GetStudent(int index)
 {
-	if (index <= size())
+	if ((size_t)index <= size())
 	{
 		return StudentList[index-1];
 	}
@@ -79,7 +79,7 @@ Student QLSV::GetStudent(int index)
 
 bool QLSV::DeleteStudent(int index)
 {
-	if (index <= size())
+	if ((size_t)index <= size())
 	{
 		StudentList.erase(StudentList.begin() + (index - 1));
 		return true;
@@ -96,10 +96,6 @@ void QLSV::SortList()
 	std::sort(StudentList.begin(), StudentList.end(), myComparision);
 }
 
-size_t QLSV::size()
-{
-	return StudentList.size();
-}
 
 bool QLSV::Check_IDNotOverlap(const std::string& id)
 {
@@ -117,6 +113,96 @@ bool QLSV::Check_IDNotOverlap(const std::string& id)
 	return flag;
 }
 
+void QLSV::Find_IDFilter(const std::string& filter)
+{
+	unsigned int counter=0;
+	for (auto it = StudentList.begin(); it != StudentList.end(); ++it)
+	{
+		Student stu = *it;
+		if (stu.GetID().find(filter) != std::string::npos)
+		{
+			stu.PrintStudentInfo();
+			counter++;
+		}
+	}
+	if (counter == 0)
+	{
+		std::cout << "Can't find any student with that filter." << std::endl;
+	}
+}
+
+void QLSV::Find_FNFilter(const std::string& filter)
+{
+	unsigned int counter = 0;
+	for (auto it = StudentList.begin(); it != StudentList.end(); ++it)
+	{
+		Student stu = *it;
+		if (stu.GetFirstName().find(filter) != std::string::npos)
+		{
+			stu.PrintStudentInfo();
+			counter++;
+		}
+	}
+	if (counter == 0)
+	{
+		std::cout << "Can't find any student with that filter." << std::endl;
+	}
+}
+
+void QLSV::Find_LNFilter(const std::string& filter)
+{
+	unsigned int counter = 0;
+	for (auto it = StudentList.begin(); it != StudentList.end(); ++it)
+	{
+		Student stu = *it;
+		if (stu.GetLastName().find(filter) != std::string::npos)
+		{
+			stu.PrintStudentInfo();
+			counter++;
+		}
+	}
+	if (counter == 0)
+	{
+		std::cout << "Can't find any student with that filter." << std::endl;
+	}
+}
+
+void QLSV::Find_YearFilter(const int& filter)
+{
+	unsigned int counter = 0;
+	for (auto it = StudentList.begin(); it != StudentList.end(); ++it)
+	{
+		Student stu = *it;
+		if (stu.GetDoB().GetYear() == filter)
+		{
+			stu.PrintStudentInfo();
+			counter++;
+		}
+	}
+	if (counter == 0)
+	{
+		std::cout << "Can't find any student with that filter." << std::endl;
+	}
+}
+
+void QLSV::Find_MonthFilter(const int& filter)
+{
+	unsigned int counter = 0;
+	for (auto it = StudentList.begin(); it != StudentList.end(); ++it)
+	{
+		Student stu = *it;
+		if (stu.GetDoB().GetMonth() == filter)
+		{
+			stu.PrintStudentInfo();
+			counter++;
+		}
+	}
+	if (counter == 0)
+	{
+		std::cout << "Can't find any student with that filter." << std::endl;
+	}
+}
+
 void QLSV::ExportToFile(const std::string& filePath)
 {
 	std::ofstream myfile(filePath);
@@ -130,7 +216,7 @@ void QLSV::ExportToFile(const std::string& filePath)
 	myfile.close();
 }
 
-void QLSV::ImportFromFile(const std::string& filePath)
+bool QLSV::ImportFromFile(const std::string& filePath)
 {
 	std::stringstream ss;
 	std::string line;
@@ -146,31 +232,31 @@ void QLSV::ImportFromFile(const std::string& filePath)
 			{
 			case 0:
 			{
-				std::cout << "ID: " << line << std::endl;
+			//	std::cout << "ID: " << line << std::endl;
 				id = line;
 				break;
 			}
 			case 1:
 			{
-				std::cout << "LN: " << line << std::endl;
+			//	std::cout << "LN: " << line << std::endl;
 				ln = line;
 				break;
 			}
 			case 2:
 			{
-				std::cout << "FN: " << line << std::endl;
+			//	std::cout << "FN: " << line << std::endl;
 				fn = line;
 				break;
 			}
 			case 3:
 			{
-				std::cout << "DoB: " << line << std::endl;
+			//	std::cout << "DoB: " << line << std::endl;
 				dob = line;
 				break;
 			}
 			case 4:
 			{
-				std::cout << "CL: " << line << std::endl;
+			//	std::cout << "CL: " << line << std::endl;
 				cl = line;
 				break;
 			}
@@ -185,11 +271,18 @@ void QLSV::ImportFromFile(const std::string& filePath)
 			}
 		}
 		file.close();
+		return true;
 	}
-	return;
+	else
+		return false;
 }
 
 Student QLSV::back()
 {
 	return StudentList.back();
+}
+
+size_t QLSV::size()
+{
+	return StudentList.size();
 }

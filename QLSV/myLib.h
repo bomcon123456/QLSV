@@ -1,8 +1,14 @@
 #pragma once
 #include <iostream>
 #include <stdlib.h>
+void FlushCin()
+{
+	std::cin.seekg(0, std::ios::end);
+	std::cin.clear();
+}
 
-void InitialScreen(int& choose)
+
+bool InitialScreen(int& choose)
 {
 	system("cls");
 	std::cout << "IS332 Student Manager" << std::endl;
@@ -14,11 +20,12 @@ void InitialScreen(int& choose)
 	std::cout << "6. Export to file" << std::endl;
 	std::cout << "7. Import from file" << std::endl;
 	std::cout << "Your choice: ";
+	FlushCin();
 	std::cin >> choose;
+	if (choose < 1 || choose >7)
+	{
+		return false;
+	}
+	return true;
 }
 
-void FlushCin()
-{
-	std::cin.seekg(0, std::ios::end);
-	std::cin.clear();
-}

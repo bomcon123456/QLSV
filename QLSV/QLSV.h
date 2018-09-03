@@ -13,7 +13,7 @@ private:
 public:
 	QLSV() {};
 
-	void Import();
+	void Import(bool bPrint);
 	void Check_ImportNewStudentAndSort(Student &test, bool bPrint);
 	void Check_NewStudentAndSort(Student &test, bool bPrint);
 	void PrintList();
@@ -24,7 +24,13 @@ public:
 	void SortList();
 	bool Check_IDNotOverlap(const std::string& id);
 
-	void ImportFromFile(const std::string& filePath);
+	void Find_IDFilter(const std::string& filter);
+	void Find_FNFilter(const std::string& filter);
+	void Find_LNFilter(const std::string& filter);
+	void Find_YearFilter(const int& filter);
+	void Find_MonthFilter(const int& filter);
+
+	bool ImportFromFile(const std::string& filePath);
 	void ExportToFile(const std::string& filePath);
 
 	// return shit.

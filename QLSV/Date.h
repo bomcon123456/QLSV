@@ -13,6 +13,8 @@ public:
 	bool Import();
 	bool ProcessString(const std::string& datestr);
 
+	int GetYear() const { return year; }
+	int GetMonth() const { return month; }
 	void PrintDate() const;
 	std::string GetDateString() const { return datestring; }
 };

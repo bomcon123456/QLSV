@@ -1,5 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
+#include<chrono>
+#include<thread>
+
 
 //#include <vector>
 //#include "Date.h"
@@ -10,156 +13,259 @@
 int main()
 {
 	QLSV test;
+	std::string filePath = "hs.txt";
+	if (test.ImportFromFile(filePath))
+	{
+		std::cout << "Successfully automatically imported " << filePath << "." << std::endl;
+		std::this_thread::sleep_for(std::chrono::nanoseconds(5));
+		std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(1));
+
+	}
 	int choose;
+	bool flag;
 	char f;
+	std::string inputstr;
 	do
 	{
-	InitialScreen(choose);
-	switch (choose)
-	{
-		case 1:
+		if (flag = InitialScreen(choose))
 		{
-			system("cls");
-			test.PrintList();
-			break;
-		}
-		case 2:
-		{
-			int n;
-			system("cls");
-			std::cout << "Welcome to add student management function" << std::endl;
-			std::cout << "How many student do you want to add: ";
-			std::cin >> n;
-			for (int i = 0; i < n; i++)
+			switch (choose)
 			{
-				test.Import();
-			}
-			std::cout << "Currently Student List has " << test.size() << " student." << std::endl;
-			break;
-		}
-		case 3:
-		{
-			system("cls");
-			test.PrintList();
-			int n=0;
-			if (test.size() == 0)
+			case 1:			// Print StudentList
 			{
-				std::cout << "There isn't any student to fix yet." << std::endl;
-				break;
-			}
-			std::cout << "Which student you want to delete? : ";
-			std::cin >> n;
-			if(test.DeleteStudent(n))
-			{
-				std::cout << "Deletion Complete. List currently has " << test.size() << " students." << std::endl;
+				system("cls");
 				test.PrintList();
-			}
-			break;
-		}
-		case 4:
-		{
-			system("cls");
-			test.PrintList();
-			int n = 0;
-			if (test.size() == 0)
-			{
-				std::cout << "There isn't any student to fix yet." << std::endl;
 				break;
 			}
-			std::cout << "Which student you want to fix information? : ";
-			std::cin >> n;
-			Student fixStu = test.GetStudent(n);
-			test.DeleteStudent(n);
-			std::cout << "1. ID" << std::endl;
-			std::cout << "2. Last name" << std::endl;
-			std::cout << "3. First name" << std::endl;
-			std::cout << "4. Date of Birth" << std::endl;
-			std::cout << "5. Class" << std::endl;
-			std::cout << "6. All" << std::endl;
-			std::cout << "Which information you want to fix? : ";
-			std::cin >> n;
-			switch (n)
+			case 2:			// Add Student
 			{
-			case 1:
-			{
-				std::string tempID = fixStu.GetID();
-				if (fixStu.InputID())
+				int n;
+				system("cls");
+				std::cout << "Welcome to add student management function" << std::endl;
+				std::cout << "How many student do you want to add: ";
+				std::cin >> n;
+				for (int i = 0; i < n; i++)
 				{
-					if (!test.Check_IDNotOverlap(fixStu.GetID()))
+					test.Import(true);
+				}
+				std::cout << "Currently Student List has " << test.size() << " student." << std::endl;
+				break;
+			}
+			case 3:			// Delete Student
+			{
+				system("cls");
+				test.PrintList();
+				int n = 0;
+				if (test.size() == 0)
+				{
+					std::cout << "There isn't any student to fix yet." << std::endl;
+					break;
+				}
+				std::cout << "Which student you want to delete? : ";
+				std::cin >> n;
+				if (test.DeleteStudent(n))
+				{
+					std::cout << "Deletion Complete. List currently has " << test.size() << " students." << std::endl;
+					test.PrintList();
+				}
+				break;
+			}
+			case 4:			// Fix Student
+			{
+				system("cls");
+				test.PrintList();
+				int n = 0;
+				if (test.size() == 0)
+				{
+					std::cout << "There isn't any student to fix yet." << std::endl;
+					break;
+				}
+				std::cout << "Which student you want to fix information? : ";
+				std::cin >> n;
+				Student fixStu = test.GetStudent(n);
+				test.DeleteStudent(n);
+				std::cout << "1. ID" << std::endl;
+				std::cout << "2. Last name" << std::endl;
+				std::cout << "3. First name" << std::endl;
+				std::cout << "4. Date of Birth" << std::endl;
+				std::cout << "5. Class" << std::endl;
+				std::cout << "6. All" << std::endl;
+				std::cout << "Which information you want to fix? : ";
+				std::cin >> n;
+				switch (n)
+				{
+				case 1:			// Fix ID
+				{
+					std::string tempID = fixStu.GetID();
+					if (fixStu.InputID())
 					{
-						std::cout << "This ID's already in the list, can't add." << std::endl;
-						fixStu.ProcessID(tempID);
+						if (!test.Check_IDNotOverlap(fixStu.GetID()))
+						{
+							std::cout << "This ID's already in the list, can't add." << std::endl;
+							fixStu.ProcessID(tempID);
+						}
+						test.Check_NewStudentAndSort(fixStu, false);
 					}
+
+					std::cout << "Result: " << std::endl;
+					test.PrintList();
+					break;
+				}
+				case 2:			// Fix LastName
+				{
+					fixStu.InputLN();
 					test.Check_NewStudentAndSort(fixStu, false);
+					std::cout << "Result: " << std::endl;
+					test.PrintList();
+					break;
+				}
+				case 3:			// Fix FirstName
+				{
+					fixStu.InputFN();
+					test.Check_NewStudentAndSort(fixStu, false);
+					std::cout << "Result: " << std::endl;
+					test.PrintList();
+					break;
+				}
+				case 4:			// Fix DoB
+				{
+					fixStu.InputDOB();
+					test.Check_NewStudentAndSort(fixStu, false);
+					std::cout << "Result: " << std::endl;
+					test.PrintList();
+					break;
+				}
+				case 5:			// Fix Class
+				{
+					fixStu.InputCL();
+					test.Check_NewStudentAndSort(fixStu, false);
+					std::cout << "Result: " << std::endl;
+					test.PrintList();
+					break;
+				}
+				case 6:			// Fix All
+				{
+					test.Import(false);
+					std::cout << "Result: " << std::endl;
+					test.PrintList();
+					break;
+				}
+				default:		// Print Error
+				{
+					std::cout << "Please input 1-6." << std::endl;
+					break;
+				}
+				}
+				break;			// break of switch(i)
+			}
+			case 5:			// Find Student
+			{
+				system("cls");
+				test.PrintList();
+				int n = 0;
+				std::string filter;
+				if (test.size() == 0)
+				{
+					std::cout << "There isn't any student to find yet." << std::endl;
+					break;
+				}
+				std::cout << "1. ID" << std::endl;
+				std::cout << "2. Last name" << std::endl;
+				std::cout << "3. First name" << std::endl;
+				std::cout << "4. Birth year" << std::endl;
+				std::cout << "5. Birth month" << std::endl;
+				std::cout << "Which filter do you want for your search? : ";
+				std::cin >> n;
+				switch (n)
+				{
+				case 1:
+				{
+					std::cout << "Please insert your ID filter: ";
+					FlushCin();
+					std::getline(std::cin, filter);
+					test.Find_IDFilter(filter);
+					break;
+				}
+				case 2:
+				{
+					std::cout << "Please insert your \"Last Name\" filter: ";
+					FlushCin();
+					std::getline(std::cin, filter);
+					test.Find_LNFilter(filter);
+					break;
+				}
+				case 3:
+				{
+					std::cout << "Please insert your \"First Name\" filter: ";
+					FlushCin();
+					std::getline(std::cin, filter);
+					test.Find_FNFilter(filter);
+					break;
+				}
+				case 4:
+				{
+					int yeartofind;
+					std::cout << "Please insert your \"Birth Year\" filter (yyyy): ";
+					FlushCin();
+					std::cin >> yeartofind;
+					test.Find_YearFilter(yeartofind);
+					break;
+				}
+				case 5:
+				{
+					int monthtofind;
+					std::cout << "Please insert your \"Birth month\" filter (mm): ";
+					FlushCin();
+					std::cin >> monthtofind;
+					test.Find_MonthFilter(monthtofind);
+					break;
+				}
+				default:
+				{
+					std::cout << "Please input 1-4." << std::endl;
+					break;
+				}
 				}
 
-				std::cout << "Result: " << std::endl;
-				test.PrintList();
 				break;
 			}
-			case 2:
+			case 6:			// Export to File
 			{
-				fixStu.InputLN();
+				system("cls");
+				std::string filePath;
+				std::cout << "Please insert file name to export: ";
+				std::cin >> filePath;
+				test.ExportToFile(filePath);
+				std::cout << "Successfully exported to " << filePath << "." << std::endl;
 				break;
 			}
-			case 3:
+			case 7:			// Import from File
 			{
-				fixStu.InputFN();
-				break;
-			}	
-			case 4:
-			{
-				fixStu.InputDOB();
-				break;
-			}
-			case 5:
-			{
-				fixStu.InputCL();
-				break;
-			}
-			case 6:
-			{
-				fixStu.Import();
+				system("cls");
+				std::string filePath;
+				std::cout << "Please insert file name to export: ";
+				std::cin >> filePath;
+				test.ImportFromFile(filePath);
 				break;
 			}
 			default:
 			{
-				std::cout << "You should not be here." << std::endl;
+				std::cout << "Please input 1-7." << std::endl;
 				break;
 			}
 			}
-			break;
 		}
-		case 6:
-		{
-			system("cls");
-			std::string filePath;
-			std::cout << "Please insert file name to export: ";
-			std::cin >> filePath;
-			test.ExportToFile(filePath);
-			break;
-		}
-		case 7:
-		{
-			system("cls");
-			std::string filePath;
-			std::cout << "Please insert file name to export: ";
-			std::cin >> filePath;
-			test.ImportFromFile(filePath);
-			break;
-		}
-		default:
-		{
-			std::cout << "LEL" << std::endl;
-			break;
-		}
-	}
-	std::cout << "Do you want to go to main screen (y/n)? ";
+
 	FlushCin();
+	std::cout << "Do you want to go to main screen (y/n)? ";
+	if (!flag)	std::cin.ignore();
 	std::cin >> f;
-	if (f != 'y')
+	choose = 0;
+	if (f == 'n' || f == 'N')
+	{
 		break;
-	} while (f == 'y');
+	}
+	} while (f=='y' || f=='Y');
 	//Student test;
 	//test.Import();
 	//test.PrintStudentInfo();

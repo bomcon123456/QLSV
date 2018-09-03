@@ -132,7 +132,7 @@ void Student::PrintStudentInfo() const
 	std::cout << "Student ID:" << s_ID << std::endl;
 	std::cout << "Student DoB:"; 
 	s_DOB.PrintDate();
-	std::cout << "Student Class:" << s_class << std::endl;
+	std::cout << "\nStudent Class:" << s_class << std::endl;
 }
 
 void Student::FlushCin()
