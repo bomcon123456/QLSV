@@ -18,7 +18,8 @@ bool InitialScreen(int& choose)
 	std::cout << "4. Fix student information" << std::endl;
 	std::cout << "5. Find student" << std::endl;
 	std::cout << "6. Export to file" << std::endl;
-	std::cout << "7. Import from file" << std::endl;
+	std::cout << "7. Import from text file" << std::endl;
+	std::cout << "8. Import from CSV file" << std::endl;
 	std::cout << "Your choice: ";
 	FlushCin();
 	std::cin >> choose;

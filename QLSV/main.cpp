@@ -13,10 +13,13 @@
 int main()
 {
 	QLSV test;
-	std::string filePath = "hs.txt";
-	if (test.ImportFromFile(filePath))
+	std::string filePathTXT = "hs.txt";
+	std::string filePathCSV = "hs.csv";
+	if (test.ImportFromTXTFile(filePathTXT))
 	{
-		std::cout << "Successfully automatically imported " << filePath << "." << std::endl;
+		std::cout << "Successfully automatically imported " << filePathTXT << "." << std::endl;
+		if(test.ImportFromCSV(filePathCSV))
+			std::cout << "Successfully automatically imported " << filePathCSV << "." << std::endl;
 		std::this_thread::sleep_for(std::chrono::nanoseconds(5));
 		std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(1));
 
@@ -246,14 +249,23 @@ int main()
 			{
 				system("cls");
 				std::string filePath;
-				std::cout << "Please insert file name to export: ";
+				std::cout << "Please insert file name to import from (*.txt): ";
 				std::cin >> filePath;
-				test.ImportFromFile(filePath);
+				test.ImportFromTXTFile(filePath);
+				break;
+			}
+			case 8:
+			{				
+				system("cls");
+				std::string filePath;
+				std::cout << "Please insert file name to import from (*.csv): ";
+				std::cin >> filePath;
+				test.ImportFromCSV(filePath);
 				break;
 			}
 			default:
 			{
-				std::cout << "Please input 1-7." << std::endl;
+				std::cout << "Please input 1-8." << std::endl;
 				break;
 			}
 			}

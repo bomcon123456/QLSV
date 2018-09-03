@@ -219,9 +219,8 @@ void QLSV::ExportToFile(const std::string& filePath)
 	myfile.close();
 }
 
-bool QLSV::ImportFromFile(const std::string& filePath)
+bool QLSV::ImportFromTXTFile(const std::string& filePath)
 {
-	std::stringstream ss;
 	std::string line;
 	std::ifstream file;
 	file.open(filePath);
@@ -278,6 +277,70 @@ bool QLSV::ImportFromFile(const std::string& filePath)
 	}
 	else
 		return false;
+}
+
+bool QLSV::ImportFromCSV(const std::string & filePath)
+{
+	std::string line;
+	std::ifstream file;
+	std::string id, ln, fn, dob, cl;
+	int i = 0;
+	file.open(filePath);
+	if (!file.is_open())
+	{
+		std::cout << "File is not suitable, can't read." << std::endl;
+		return false;
+	}
+	while (!std::getline(file,line,',').eof())
+	{
+		if (int pos = line.find_last_of('\n') != std::string::npos)
+		{
+			cl = line.substr(0, 4);
+			Student importStu(id, ln, fn, dob, cl);
+			Check_NewStudentAndSort(importStu, true);
+			id = line.substr(5);
+		}
+		switch (i)
+		{
+		case 0:
+		{
+			id = line;
+			break;
+		}
+		case 1:
+		{
+			ln = line;
+			break;
+		}
+		case 2:
+		{
+			fn = line;
+			break;
+		}
+		case 3:
+		{
+			dob = line;
+			break;
+		}
+		default:
+			break;
+		}
+		if (i < 4)
+		{
+			++i;
+		}
+		else
+		{
+			i = 1;
+		}
+	}
+	std::getline(file, line);
+	cl = line.substr(0,4);
+	Student importStu(id, ln, fn, dob, cl);
+	Check_NewStudentAndSort(importStu, true);
+
+	file.close();
+	return true;
 }
 
 Student QLSV::back()

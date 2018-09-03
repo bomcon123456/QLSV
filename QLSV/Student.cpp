@@ -6,7 +6,13 @@ Student::Student(const std::string& p_id, const std::string& p_ln, const std::st
 {
 	if (!ProcessID(p_id) || !ProcessLastName(p_ln) || !ProcessFirstName(p_fn) || !ProcessClass(p_cl) || !s_DOB.ProcessString(p_dob))
 	{
-		std::cout << "The student with ID: " << p_id << " and name: " << p_fn <<" either has incorrect pattern or duplicated, please check again." << std::endl;
+		std::cout << "The student with ID: " << p_id << " and name: " << p_fn << " either has incorrect pattern or duplicated, and will be alternate with ERROR, please delete it." << std::endl;
+		std::string idbug("E00001");
+		s_ID = idbug;
+		s_LastName = "ERROR";
+		s_FirstName = s_LastName;
+		s_class = "ER01";
+		s_DOB.ProcessString("01/01/0000");
 	}
 }
 

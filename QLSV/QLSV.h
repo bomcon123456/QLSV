@@ -2,7 +2,6 @@
 #include <vector>
 #include <algorithm>
 #include <fstream>
-#include <sstream>
 #include "Student.h"
 #include "vendor/VariadicTable.h"
 
@@ -30,7 +29,8 @@ public:
 	void Find_YearFilter(const int& filter);
 	void Find_MonthFilter(const int& filter);
 
-	bool ImportFromFile(const std::string& filePath);
+	bool ImportFromTXTFile(const std::string& filePath);
+	bool ImportFromCSV(const std::string & filePath);
 	void ExportToFile(const std::string& filePath);
 
 	// return shit.
