@@ -22,10 +22,11 @@ bool InitialScreen(int& choose)
 	std::cout << "Your choice: ";
 	FlushCin();
 	std::cin >> choose;
-	if (choose < 1 || choose >7)
+	if (std::cin.fail())
 	{
 		return false;
 	}
+
 	return true;
 }
 

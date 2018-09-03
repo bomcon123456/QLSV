@@ -84,11 +84,11 @@ int main()
 				std::cin >> n;
 				Student fixStu = test.GetStudent(n);
 				test.DeleteStudent(n);
-				std::cout << "1. ID" << std::endl;
-				std::cout << "2. Last name" << std::endl;
-				std::cout << "3. First name" << std::endl;
-				std::cout << "4. Date of Birth" << std::endl;
-				std::cout << "5. Class" << std::endl;
+				std::cout << "1. ID" << " (Currently: "<<fixStu.GetID()<<")"<< std::endl;
+				std::cout << "2. Last name" << " (Currently: " << fixStu.GetLastName() << ")" << std::endl;
+				std::cout << "3. First name" << " (Currently: " << fixStu.GetFirstName() << ")" << std::endl;
+				std::cout << "4. Date of Birth" << " (Currently: " << fixStu.GetDoB().GetDateString() << ")" << std::endl;
+				std::cout << "5. Class" << " (Currently: " << fixStu.GetClass() << ")" << std::endl;
 				std::cout << "6. All" << std::endl;
 				std::cout << "Which information you want to fix? : ";
 				std::cin >> n;
@@ -145,7 +145,10 @@ int main()
 				}
 				case 6:			// Fix All
 				{
-					test.Import(false);
+					if (!test.Import(false))
+					{
+						test.Check_NewStudentAndSort(fixStu, false);
+					}
 					std::cout << "Result: " << std::endl;
 					test.PrintList();
 					break;

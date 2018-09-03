@@ -2,11 +2,11 @@
 
 bool myComparision(Student a, Student b) { return (a < b); }
 
-void QLSV::Import(bool bPrint)
+bool QLSV::Import(bool bPrint)
 {
 	Student test;
 	while(!test.InputID());
-	Check_ImportNewStudentAndSort(test, bPrint);
+	return Check_ImportNewStudentAndSort(test, bPrint);
 	//test.Import();
 	//if (Check_IDNotOverlap(test.GetID()))
 	//{
@@ -16,16 +16,19 @@ void QLSV::Import(bool bPrint)
 	//}
 }
 
-void QLSV::Check_ImportNewStudentAndSort(Student &test,bool bPrint)
+bool QLSV::Check_ImportNewStudentAndSort(Student &test,bool bPrint)
 {
 	if (Check_IDNotOverlap(test.GetID()))
 	{
 		test.Import();
 		StudentList.push_back(test);
-		if(bPrint)
+		if (bPrint)
 			std::cout << "Sucessfully imported " << StudentList.back().GetFirstName() << std::endl;
 		SortList();
+		return true;
 	}
+	else
+		return false;
 }
 
 void QLSV::Check_NewStudentAndSort(Student &test, bool bPrint)
