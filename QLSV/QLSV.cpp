@@ -311,9 +311,9 @@ bool QLSV::ImportFromCSV(const std::string & filePath)
 	}
 	while (!std::getline(file,line,',').eof())
 	{
-		if (int pos = line.find_last_of('\n') != std::string::npos)
+		if (line.find_last_of('\n') != std::string::npos)
 		{
-			cl = line.substr(0, 4);
+			cl = line.substr(0, line.find_last_of('\n'));
 			Student importStu(id, ln, fn, dob, cl);
 			Check_NewStudentAndSort(importStu, true);
 			id = line.substr(5);

@@ -6,7 +6,7 @@ Student::Student(const std::string& p_id, const std::string& p_ln, const std::st
 {
 	if (!ProcessID(p_id) || !ProcessLastName(p_ln) || !ProcessFirstName(p_fn) || !ProcessClass(p_cl) || !s_DOB.ProcessString(p_dob))
 	{
-		std::cout << "The student with ID: " << p_id << " and name: " << p_fn << " either has incorrect pattern or duplicated, and will be alternate with ERROR, please delete it." << std::endl;
+		std::cout << "The student with ID: " << p_id << " and name: " << p_fn << " either has incorrect pattern or duplicated, and will be alternated with ERROR, please delete it." << std::endl;
 		std::string idbug("E00001");
 		s_ID = idbug;
 		s_LastName = "ERROR";
@@ -114,7 +114,7 @@ bool Student::InputLN()
 bool Student::InputCL()
 {
 	std::string p_class;
-	std::cout << "Please enter Student's class:";
+	std::cout << "Please enter Student's class: ";
 	FlushCin();
 	std::cin >> p_class;
 	return ProcessClass(p_class);
@@ -134,11 +134,11 @@ bool Student::operator<(const Student& b)
 
 void Student::PrintStudentInfo() const
 {
-	std::cout << "Student name:" << s_LastName << " " << s_FirstName << std::endl;
-	std::cout << "Student ID:" << s_ID << std::endl;
-	std::cout << "Student DoB:"; 
+	std::cout << "Student name: " << s_LastName << " " << s_FirstName << std::endl;
+	std::cout << "Student ID: " << s_ID << std::endl;
+	std::cout << "Student DoB: "; 
 	s_DOB.PrintDate();
-	std::cout << "\nStudent Class:" << s_class << std::endl;
+	std::cout << "\nStudent Class: " << s_class << std::endl;
 }
 
 void Student::FlushCin()
